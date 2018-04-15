@@ -1,0 +1,55 @@
+version: 2
+jobs:
+  build-single:
+    docker:
+      - image: ubuntu:trusty
+    steps:
+      - checkout
+      - run: sudo apt-get update
+      - run: sudo apt-get -y install build-essential
+      - run: sudo apt-get -y install libelf-dev
+      - run: sudo apt-get -y install wget
+      - run: sudo apt-get -y install unzip
+      - run: make METHOD="--single" all
+  build-multi:
+    docker:
+      - image: ubuntu:trusty
+    steps:
+      - checkout
+      - run: sudo apt-get update
+      - run: sudo apt-get -y install build-essential
+      - run: sudo apt-get -y install libelf-dev
+      - run: sudo apt-get -y install wget
+      - run: sudo apt-get -y install unzip
+      - run: make METHOD="--multi" all
+  build-generic:
+    docker:
+      - image: ubuntu:trusty
+    steps:
+      - checkout
+      - run: sudo apt-get update
+      - run: sudo apt-get -y install build-essential
+      - run: sudo apt-get -y install libelf-dev
+      - run: sudo apt-get -y install wget
+      - run: sudo apt-get -y install unzip
+      - run: make METHOD="--generic" all
+  build-debug:
+    docker:
+      - image: ubuntu:trusty
+    steps:
+      - checkout
+      - run: sudo apt-get update
+      - run: sudo apt-get -y install build-essential
+      - run: sudo apt-get -y install libelf-dev
+      - run: sudo apt-get -y install wget
+      - run: sudo apt-get -y install unzip
+      - run: make METHOD="--debug" all
+workflows:
+  version: 2
+  libecc_builds:
+    jobs:
+      - build-single
+      - build-multi
+      - build-generic
+      - build-debug
+
