@@ -1,46 +1,38 @@
 version: 2
 jobs:
   build-single:
-    docker:
-      - image: ubuntu:trusty
+    machine:
+      image: ubuntu-1604:201903-01
     steps:
       - checkout
       - run: sudo apt-get update
-      - run: sudo apt-get -y install build-essential
-      - run: sudo apt-get -y install libelf-dev
       - run: sudo apt-get -y install wget
       - run: sudo apt-get -y install unzip
       - run: make METHOD="--single" all
   build-multi:
-    docker:
-      - image: ubuntu:trusty
+    machine:
+      image: ubuntu-1604:201903-01
     steps:
       - checkout
       - run: sudo apt-get update
-      - run: sudo apt-get -y install build-essential
-      - run: sudo apt-get -y install libelf-dev
       - run: sudo apt-get -y install wget
       - run: sudo apt-get -y install unzip
       - run: make METHOD="--multi" all
   build-generic:
-    docker:
-      - image: ubuntu:trusty
+    machine:
+      image: ubuntu-1604:201903-01
     steps:
       - checkout
       - run: sudo apt-get update
-      - run: sudo apt-get -y install build-essential
-      - run: sudo apt-get -y install libelf-dev
       - run: sudo apt-get -y install wget
       - run: sudo apt-get -y install unzip
       - run: make METHOD="--generic" all
   build-debug:
-    docker:
-      - image: ubuntu:trusty
+    machine:
+      image: ubuntu-1604:201903-01
     steps:
       - checkout
       - run: sudo apt-get update
-      - run: sudo apt-get -y install build-essential
-      - run: sudo apt-get -y install libelf-dev
       - run: sudo apt-get -y install wget
       - run: sudo apt-get -y install unzip
       - run: make METHOD="--debug" all
